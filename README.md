@@ -8,3 +8,4 @@ https://allenseb.github.io/AG-WorkDayScheduler/
 
 screenshot:
 
+![planner](https://user-images.githubusercontent.com/108300721/183544457-f99876f6-7a09-42b2-8576-42a6f1935d10.jpg)
