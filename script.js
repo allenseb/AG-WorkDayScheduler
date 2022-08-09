@@ -12,7 +12,7 @@ function initializeSchedule(){
   $timeBlocks.each(function(){
     var $thisBlock = $(this);
     var thisBlockHr = parseInt($thisBlock.attr("data-hour"));
-
+    // data-hour is attributed to given block
     var todoObj = {
       hour: thisBlockHr,
       text: "",
@@ -64,18 +64,17 @@ function saveHandler(){
   var hourToUpdate = $(this).parent().attr("data-hour");
   var itemToAdd = (($(this).parent()).children("textarea")).val();
 
-  //see which item we need to update based on the hour of the button clicked matching
-  for (var j = 0; j < toDoItems.length; j++){
-    if (toDoItems[j].hour == hourToUpdate){
-      //set its text to what was added to textarea
-      toDoItems[j].text = itemToAdd;
-    }
-  }
+  for (var i = 0; i < toDoItems.length; i++){
+    if (toDoItems[i].hour == hourToUpdate){
+
+      toDoItems[i].text = itemToAdd;
+    } 
+  } //sets text to what was typed into the text area
+
   localStorage.setItem("todos", JSON.stringify(toDoItems));
   renderSchedule();
 }
 
-// when the document loads
 $(document).ready(function(){
 
   //format the timeblocks depending on time
@@ -86,12 +85,11 @@ $(document).ready(function(){
     initializeSchedule();
   }
 
-  //display current date
   $currentDay.text(currentDate);
 
-  //render schedule from local storage
+  //schedule saved on localstorage is now shown
   renderSchedule();
-  //when a todo item save button is clicked, save it
+  //saves todo when btn is clicked
   $scheduleArea.on("click", "button", saveHandler);
   
 });
